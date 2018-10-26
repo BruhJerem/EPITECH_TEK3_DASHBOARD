@@ -1,0 +1,167 @@
+<!doctype html>
+  <html class="no-js" lang="">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Githubed Dashboard</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+      <link rel="shortcut icon" href="images/favicon.ico">
+
+      <!-- stylesheets -->
+      <link rel="stylesheet" type="text/css" href="stylesheets/theme.css" />
+      <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+
+      <!-- javascript -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlYNNs7VBO71qiKFMNiD0R9sd8hOt0wD4"></script>
+      <script src="javascripts/theme.min.js"></script>
+  </head>
+  <body>
+  <!--[if lt IE 8]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <nav class="navbar navbar-expand-lg navbar-dark" role="navigation">
+      <div class="container no-override">
+          <a class="navbar-brand" href="/">
+              <!--
+                          <img src="images/logo-alt-w.png" class="d-none d-lg-inline mr-2 w-25" />
+              -->
+              Githubed Dashboard
+          </a>
+          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse justify-content-end" id="navbar-collapse">
+              <ul class="navbar-nav">
+                  {% if not user %}
+                  <li class="nav-item active dropdown">
+                      <a href="/register" class="nav-link dropdown-toggle">
+                          Register
+                      </a>
+
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a href="/login" class="nav-link dropdown-toggle">
+                          Login
+                      </a>
+                  </li>
+                  {% else %}
+                  <li class="nav-item dropdown">
+                      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                          {{user}}
+                          <i class="ion-chevron-down"></i>
+                      </a>
+                      <div class="dropdown-menu" role="menu">
+                          <a class="dropdown-item" href="dashboard">Dashboard</a>
+                          <a class="dropdown-item" href="profil">Profil</a>
+                          <a class="dropdown-item" href="logout" style="color: #9b2625;">Logout</a>
+                      </div>
+                  </li>
+                  {% endif %}
+                  </ul>
+          </div>
+      </div>
+  </nav>
+    <div class="wrapper">
+        {% if no_user %}
+        <div class="alert alert-danger text-center" role="alert">
+            <strong>No Username.<strong></strong>
+        </div>
+        {% endif %}
+
+        {% if email_changed %}
+        <div class="alert alert-success text-center" role="alert">
+            <strong>Email</strong> changed.<strong></strong>
+        </div>
+        {% endif %}
+
+        {% if email_exist %}
+        <div class="alert alert-danger text-center" role="alert">
+            <strong>Email</strong> already exist.<strong></strong>
+        </div>
+        {% endif %}
+
+        {% if password_not_match %}
+        <div class="alert alert-danger text-center" role="alert">
+            <strong>Password</strong> don't match.<strong></strong>
+        </div>
+        {% endif %}
+
+        {% if password_error %}
+        <div class="alert alert-danger text-center" role="alert">
+            <strong>Password</strong> changing got an error.<strong></strong>
+        </div>
+        {% endif %}
+
+        {% if password_changed %}
+        <div class="alert alert-success text-center" role="alert">
+            <strong>Password</strong> changed.<strong></strong>
+        </div>
+        {% endif %}
+
+        {% if oldpassword_false %}
+        <div class="alert alert-danger text-center" role="alert">
+            <strong>Old Password</strong> is incorrect.<strong></strong>
+        </div>
+        {% endif %}
+    </div>
+
+    <form action="/profil" method="post">
+        <div id="email" class="index-features-friends">
+            <section class="clearfix">
+                <h1 style="border-bottom: 1px solid #457B9D; padding-bottom: 20px">Change your email</h1>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-3 col-form-label">Email</label>
+                    <div class="form-field">
+                        <input type="email" class="form-control" id="email" placeholder={{email}} name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-action">
+                    <input type="submit" class="btn-shadow btn-shadow-primary" value="Submit changes">
+                </div>
+            </section>
+        </div>
+    </form>
+
+
+    <form action="/profil" method="post">
+        <div id="password" class="index-features-friends">
+            <section class="clearfix">
+                <h1 style="border-bottom: 1px solid #457B9D; padding-bottom: 10px">Change your password</h1>
+                <div class="form-group row">
+                    <label for="oldPassword" class="col-sm-3 col-form-label">Previous Password</label>
+                    <div class="form-field">
+                        <input type="password" class="form-control" id="oldPassword" placeholder="Previous" name="oldPassword" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-sm-3 col-form-label">Password</label>
+                    <div class="form-field">
+                        <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="confirmation" class="col-sm-3 col-form-label">Confirmation</label>
+                    <div class="form-field">
+                        <input type="password" class="form-control" id="confirmation" placeholder="Confirmation" name="confirmation" required>
+                    </div>
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                        Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                    </small>
+                </div>
+                <div class="form-action">
+                    <input type="submit" class="btn-shadow btn-shadow-primary" value="Submit changes">
+                </div>
+            </section>
+        </div>
+    </form>
+  </div>
+
+</body>
+</html>

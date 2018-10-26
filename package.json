@@ -1,0 +1,28 @@
+{
+  "name": "dev-dashboard-2018",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "get-json": "^1.0.1",
+    "http-errors": "~1.6.2",
+    "mongodb": "^3.1.8",
+    "mongoose": "^5.3.4",
+    "morgan": "~1.9.0",
+    "passport": "^0.4.0",
+    "passport-local-mongoose": "^5.0.1",
+    "total.js": "^3.0.0",
+    "twig": "~0.10.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}

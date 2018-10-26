@@ -1,0 +1,147 @@
+{% block body %}
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cinema</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/theme.css" />
+
+    <!-- javascript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlYNNs7VBO71qiKFMNiD0R9sd8hOt0wD4"></script>
+    <script src="javascripts/theme.min.js"></script>
+
+      <!-- CoolAdmin -->
+      <!-- Required meta tags-->
+
+      <!-- Fontfaces CSS-->
+      <link href="css/font-face.css" rel="stylesheet" media="all">
+      <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+      <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+      <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+
+      <!-- Vendor CSS-->
+      <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+      <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+      <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+      <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+      <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+      <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+      <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+      <!-- Main CSS-->
+      <link href="css/theme.css" rel="stylesheet" media="all">
+
+</head>
+<body class="signin-page">
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!--[if lt IE 8]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<nav class="navbar navbar-expand-lg navbar-dark" role="navigation">
+      <div class="container no-override">
+          <a class="navbar-brand" href="/">
+              <!--
+                          <img src="images/logo-alt-w.png" class="d-none d-lg-inline mr-2 w-25" />
+              -->
+              Githubed Dashboard
+          </a>
+          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse justify-content-end" id="navbar-collapse">
+              <ul class="navbar-nav">
+                  {% if not user %}
+                  <li class="nav-item active dropdown">
+                      <a href="/register" class="nav-link dropdown-toggle">
+                          Register
+                      </a>
+
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a href="/login" class="nav-link dropdown-toggle">
+                          Login
+                      </a>
+                  </li>
+                  {% else %}
+                      <li class="nav-item active dropdown">
+                          <a href="/dashboard" class="nav-link dropdown-toggle">
+                              Dashboard
+                          </a>
+                      </li>
+                      <li class="nav-item active dropdown">
+                          <a href="/weather" class="nav-link dropdown-toggle">
+                              Weather
+                          </a>
+                      </li>
+                      <li class="nav-item active dropdown">
+                          <a href="/cinema" class="nav-link dropdown-toggle">
+                              Cinema
+                          </a>
+                      </li>
+                      <li class="nav-item active dropdown">
+                          <a href="/compare" class="nav-link dropdown-toggle">
+                              Comparaison
+                          </a>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                              {{user}}
+                              <i class="ion-chevron-down"></i>
+                          </a>
+                          <div class="dropdown-menu" role="menu">
+                              <a class="dropdown-item" href="dashboard">Dashboard</a>
+                              <a class="dropdown-item" href="profil">Profil</a>
+                              <a class="dropdown-item" href="logout" style="color: #9b2625;">Logout</a>
+                          </div>
+                      </li>
+                  {% endif %}
+                  </ul>
+          </div>
+      </div>
+  </nav>
+
+    <div class="wrapper">
+        <div class="header">
+            <a href="index.html" class="logo">
+            </a>
+        </div>
+        <form action="/cinema" method="post">
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    <label for="selectLg" class=" form-control-label">Select Cinema Category</label>
+                </div>
+                <div class="col-12 col-md-9">
+                    <select name="selectLg" id="selectLg" class="form-control-lg form-control">
+                        <option value="popular">Popular</option>
+                        <option value="top_rated">Top Rated</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="now_playing">Now Playing</option>
+                    </select>
+                </div>
+            </div>
+            <small id="cinemaHelpBlock" class="form-text text-muted">
+                Please select one of this.
+            </small>
+            <div class="form-action">
+                <input type="submit" class="btn-shadow btn-shadow-primary" value="Submit">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,453 @@
+  <!doctype html>
+  <html class="no-js" lang="">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Githubed Dashboard</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+      <link rel="shortcut icon" href="images/favicon.ico">
+
+      <!-- stylesheets -->
+      <link rel="stylesheet" type="text/css" href="stylesheets/theme.css" />
+      <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+
+      <!-- javascript -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script src="javascripts/theme.min.js"></script>
+
+      <!-- CoolAdmin -->
+      <!-- Required meta tags-->
+
+      <!-- Fontfaces CSS-->
+      <link href="css/font-face.css" rel="stylesheet" media="all">
+      <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+      <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+      <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+
+      <!-- Vendor CSS-->
+      <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+      <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+      <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+      <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+      <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+      <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+      <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+      <!-- Main CSS-->
+      <link href="css/theme.css" rel="stylesheet" media="all">
+
+  </head>
+  <body>
+  <!--[if lt IE 8]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <nav class="navbar navbar-expand-lg navbar-dark" role="navigation">
+      <div class="container no-override">
+          <a class="navbar-brand" href="/">
+              Githubed Dashboard
+          </a>
+          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse justify-content-end" id="navbar-collapse">
+              <ul class="navbar-nav">
+                  {% if not user %}
+                      <li class="nav-item active dropdown">
+                          <a href="/register" class="nav-link dropdown-toggle">
+                              Register
+                          </a>
+    
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a href="/login" class="nav-link dropdown-toggle">
+                              Login
+                          </a>
+                      </li>
+                  {% else %}
+                      <li class="nav-item active dropdown">
+                          <a href="/dashboard" class="nav-link dropdown-toggle">
+                              Dashboard
+                          </a>
+                      </li>
+                      <li class="nav-item active dropdown">
+                          <a href="/weather" class="nav-link dropdown-toggle">
+                              Weather
+                          </a>
+                      </li>
+                      <li class="nav-item active dropdown">
+                          <a href="/cinema" class="nav-link dropdown-toggle">
+                              Cinema
+                          </a>
+                      </li>
+					  <li class="nav-item active dropdown">
+						  <a href="/compare" class="nav-link dropdown-toggle">
+							  Comparaison
+						  </a>
+					  </li>
+                      <li class="nav-item dropdown">
+                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                              {{user}}
+                              <i class="ion-chevron-down"></i>
+                          </a>
+                          <div class="dropdown-menu" role="menu">
+                              <a class="dropdown-item" href="dashboard">Dashboard</a>
+                              <a class="dropdown-item" href="profil">Profil</a>
+                              <a class="dropdown-item" href="logout" style="color: #9b2625;">Logout</a>
+                          </div>
+                      </li>
+                  {% endif %}
+                  </ul>
+             </div>
+          </div>
+        </nav>
+  
+
+        <div class="page-container">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        
+                        <div class="row"">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">overview</h2>
+                                    <a href="javascript:location.reload(true)">
+                                        <button class="au-btn au-btn-icon au-btn--blue">
+                                            <i class="fas fa-refresh"></i>Refresh
+                                        </button>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                            
+                        <div class="row m-t-25">
+                            
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="fas fa-thermometer-half"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>{{current_degrees}}</h2>
+                                                <span>{{weather_town}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="fas fa-cloud"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>{{current_humidity}}</h2>
+                                                <span>{{weather_town}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c4">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-money"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>$1,060,386</h2>
+                                                <span>Dashboard total earnings</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart_earning"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+	
+							<div class="col-sm-6 col-lg-3">
+								<div class="overview-item overview-item--c2">
+									<div class="overview__inner">
+										<div class="overview-box clearfix">
+											<div class="icon">
+												<i class="fas fa-meh-o"></i>
+											</div>
+											<div class="text">
+												<h2>{{chuck_norris}}</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+    
+                    <div class="table-responsive table--no-card m-b-30">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Popularity</th>
+                                    <th>Release Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for movie in movies_array %}
+                                <tr>
+                                    <td><a target="_blank" rel="noopener noreferrer" href={{ movie.poster_path }}>{{movie.name}}</a></td>
+                                    <td href={{movie.poster_path}}>{{movie.popularity}}</td>
+                                    <td href={{movie.poster_path}}>{{movie.release_date}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <style>
+                        /* Always set the map height explicitly to define the size of the div
+						 * element that contains the map. */
+                        #map {
+                            min-width: 200px;
+                            width: 100%;
+                            min-height: 700px;
+                            height: 100%;
+                            border: 1px solid blue;
+                            /*height: 20%;
+                            padding: 50%;*/
+                        }
+                        #description {
+                            font-family: Roboto;
+                            font-size: 15px;
+                            font-weight: 300;
+                        }
+
+                        #infowindow-content .title {
+                            font-weight: bold;
+                        }
+
+                        #infowindow-content {
+                            display: none;
+                        }
+
+                        #map #infowindow-content {
+                            display: inline;
+                        }
+
+                        .pac-card {
+                            margin: 10px 10px 0 0;
+                            border-radius: 2px 0 0 2px;
+                            box-sizing: border-box;
+                            -moz-box-sizing: border-box;
+                            outline: none;
+                            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                            background-color: #fff;
+                            font-family: Roboto;
+                        }
+
+                        #pac-container {
+                            padding-bottom: 12px;
+                            margin-right: 12px;
+                        }
+
+                        .pac-controls {
+                            display: inline-block;
+                            padding: 5px 11px;
+                        }
+
+                        .pac-controls label {
+                            font-family: Roboto;
+                            font-size: 13px;
+                            font-weight: 300;
+                        }
+
+                        #pac-input {
+                            background-color: #fff;
+                            font-family: Roboto;
+                            font-size: 15px;
+                            font-weight: 300;
+                            margin-left: 12px;
+                            padding: 0 11px 0 13px;
+                            text-overflow: ellipsis;
+                            width: 400px;
+                        }
+
+                        #pac-input:focus {
+                            border-color: #4d90fe;
+                        }
+
+                        #title {
+                            color: #fff;
+                            background-color: #4d90fe;
+                            font-size: 25px;
+                            font-weight: 500;
+                            padding: 6px 12px;
+                        }
+                        #target {
+                            width: 345px;
+                        }
+                    </style>
+
+                <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                <div id="map"></div>
+                <script>
+                    // This example adds a search box to a map, using the Google Place Autocomplete
+                    // feature. People can enter geographical searches. The search box will return a
+                    // pick list containing a mix of places and predicted search terms.
+
+                    // This example requires the Places library. Include the libraries=places
+                    // parameter when you first load the API. For example:
+                    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+                    function initAutocomplete() {
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            center: {lat:  44.3333, lng: 1.2167},
+                            zoom: 7,
+                            zoomControl: false,
+                            scaleControl: false,
+                            scrollwheel: false,
+                            disableDoubleClickZoom: true,
+                            mapTypeId: 'roadmap'
+                        });
+                        $(window).resize(function() {
+                            // (the 'map' here is the result of the created 'var map = ...' above)
+                            google.maps.event.trigger(map, "resize");
+                        });
+                        // Create the search box and link it to the UI element.
+                        var input = document.getElementById('pac-input');
+                        var searchBox = new google.maps.places.SearchBox(input);
+                        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                        // Bias the SearchBox results towards current map's viewport.
+                        map.addListener('bounds_changed', function() {
+                            searchBox.setBounds(map.getBounds());
+                        });
+
+                        var markers = [];
+                        // Listen for the event fired when the user selects a prediction and retrieve
+                        // more details for that place.
+                        searchBox.addListener('places_changed', function() {
+                            var places = searchBox.getPlaces();
+
+                            if (places.length == 0) {
+                                return;
+                            }
+
+                            // Clear out the old markers.
+                            markers.forEach(function(marker) {
+                                marker.setMap(null);
+                            });
+                            markers = [];
+
+                            // For each place, get the icon, name and location.
+                            var bounds = new google.maps.LatLngBounds();
+                            places.forEach(function(place) {
+                                if (!place.geometry) {
+                                    console.log("Returned place contains no geometry");
+                                    return;
+                                }
+                                var icon = {
+                                    url: place.icon,
+                                    size: new google.maps.Size(71, 71),
+                                    origin: new google.maps.Point(0, 0),
+                                    anchor: new google.maps.Point(17, 34),
+                                    scaledSize: new google.maps.Size(25, 25)
+                                };
+
+                                // Create a marker for each place.
+                                markers.push(new google.maps.Marker({
+                                    map: map,
+                                    icon: icon,
+                                    title: place.name,
+                                    position: place.geometry.location
+                                }));
+
+                                if (place.geometry.viewport) {
+                                    // Only geocodes have viewport.
+                                    bounds.union(place.geometry.viewport);
+                                } else {
+                                    bounds.extend(place.geometry.location);
+                                }
+                            });
+                            map.fitBounds(bounds);
+                        });
+                    }
+					
+                </script>
+					<div class="row">
+						<div class="row m-t-25">
+							<div class="col-sm-6 col-lg-6">
+								<iframe height="80px" width="300px" frameborder="0" src="https://akshatmittal.com/youtube-realtime/embed/#!/{{ youtuber }}_A" style="border: 0; width:300px; height:80px; background-color: #FFF;"></iframe>
+							</div>
+							<div class="col-sm-6 col-lg-6">
+								<iframe height="80px" width="300px" frameborder="0" src="https://akshatmittal.com/youtube-realtime/embed/#!/{{ youtuber1 }}_A" style="border: 0; width:300px; height:80px; background-color: #FFF;"></iframe>
+							</div>
+						</div>
+					</div>
+	
+					<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIEaxUKHFVci_RuDQ3Zgt2VFibpZytqyg&libraries=places&callback=initAutocomplete"></script>
+                <div class="row">
+                    <div class="row m-t-25">
+                        <div class="col-sm-6 col-lg-3">
+                            <div id="ytplayer"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <script>
+                    // Load the IFrame Player API code asynchronously.
+                    var tag = document.createElement('script');
+                    tag.src = "https://www.youtube.com/player_api";
+                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                    // Replace the 'ytplayer' element with an <iframe> and
+                    // YouTube player after the API code downloads.
+                    var player;
+                    function onYouTubePlayerAPIReady() {
+                        player = new YT.Player('ytplayer', {
+                            height: '360',
+                            width: '640',
+                            videoId: 'tKnLz9OhnLw'
+                        });
+                    }
+                </script>
+            </div>
+        </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+    <!-- Main JS-->
+    <script src="javascripts/main.js"></script>
+    </body>
+</html>
